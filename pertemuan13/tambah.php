@@ -3,8 +3,7 @@ require 'functions.php';
 $conn = mysqli_connect("localhost", "root", "", "phpdasar");
 //cek apakah tombol submit sudah ditekan atau belum
 if (isset($_POST["submit"])) {
-
-	 
+	
 	// cek apakah data berhasil ditambahkan atau tidak
 	if (tambah($_POST) > 0) {
 		echo"
@@ -17,7 +16,7 @@ if (isset($_POST["submit"])) {
 		echo"
 			<script>
 				alert('Data Gagal ditambahkan');
-				document.location.href='tambah.php';
+				document.location.href='index.php';
 			</script>
 		";
 	}
@@ -36,7 +35,7 @@ if (isset($_POST["submit"])) {
 <body>
 	<h1>Tambah Data Mahasiswa</h1>
 
-	<form action="" method="POST" enctype="multipart/form-data">
+	<form action="" method="POST">
 		<ul>
 			<li>
 				<label for="nrp">NRP : </label>
@@ -56,9 +55,8 @@ if (isset($_POST["submit"])) {
 			</li>
 			<li>
 				<label for="gambar">Gambar : </label>
-				<input type="file" name="gambar" id="gambar">
+				<input type="text" name="gambar" id="gambar" required>
 			</li>
-			<br>
 			<li>
 				<button type="submit" name="submit">Tambah Data!</button>
 			</li>
