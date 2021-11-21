@@ -1,4 +1,9 @@
-<?php 
+<?php
+session_start();
+if (!isset($_SESSION["login"])) {
+	header("Location: login.php");
+}
+
 require 'functions.php';
 
 //ambil data di url
@@ -9,44 +14,45 @@ $mhs = query("SELECT * FROM mahasiswa WHERE id = $id")[0];
 
 //cek apakah tombol submit sudah ditekan atau belum
 if (isset($_POST["submit"])) {
-	
+
 	// cek apakah data berhasil diubah atau tidak
 	if (ubah($_POST) > 0) {
-		echo"
+		echo "
 			<script>
 				alert('Data Berhasil diubah');
 				document.location.href='index.php';
 			</script>
 		";
-	}else{
-		echo"
+	} else {
+		echo "
 			<script>
 				alert('Data Gagal diubah');
 				document.location.href='index.php';
 			</script>
 		";
 	}
-	
 }
 
- ?>
+?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<title>Ubah Mahasiswa</title><br>
 	<a href="index.php">Kembali ke Index</a>
 </head>
+
 <body>
 	<h1>Ubah Data Mahasiswa</h1>
 
 	<form action="" method="POST">
-		
+
 		<input type="hidden" name="id" value="<?php echo $mhs["id"]; ?>">
-			
+
 		<ul>
-			
+
 			<li>
 				<label for="nrp">NRP : </label>
 				<input type="text" name="nrp" id="nrp" required value="<?php echo $mhs["nrp"]; ?>">
@@ -74,4 +80,5 @@ if (isset($_POST["submit"])) {
 	</form>
 
 </body>
+
 </html>

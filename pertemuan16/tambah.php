@@ -1,4 +1,8 @@
 <?php
+session_start();
+if (!isset($_SESSION["login"])) {
+	header("Location: login.php");
+}
 require 'functions.php';
 $conn = mysqli_connect("localhost", "root", "", "phpdasar");
 //cek apakah tombol submit sudah ditekan atau belum
