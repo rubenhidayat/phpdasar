@@ -5,30 +5,7 @@ if (!isset($_SESSION["login"])) {
 }
 
 require 'functions.php';
-
-//pagination
-//konfigurasi
-$jumlahDataPerHalaman = 2;
-$jumlahData = count(query("SELECT * FROM mahasiswa"));
-$jumlahHalaman = ceil($jumlahData / $jumlahDataPerHalaman);
-//ternary
-$halamanAktif = (isset($_GET['p'])) ? $_GET['p'] : 1;
-// var_dump($halamanAktif);
-$awalData = ($jumlahDataPerHalaman * $halamanAktif) - $jumlahDataPerHalaman;
-
-//HALAMAN AKTIF
-// if (isset($_GET['p'])) {
-// 	$halamanAktif = $_GET["p"];
-// } else {
-// 	$halamanAktif = 1;
-// }
-
-
-//navigasi
-
-
-
-$mahasiswa = query("SELECT * FROM mahasiswa LIMIT $awalData, $jumlahDataPerHalaman");
+$mahasiswa = query("SELECT * FROM mahasiswa");
 
 
 //tombol cari ditekan
@@ -66,28 +43,6 @@ if (isset($_POST["cari"])) {
 		<br><br>
 
 	</form>
-	<a href="?p=1">RESET TABEL</a><br>
-
-
-	<!-- NAVIGATOR -->
-	<?php if (!isset($_POST['cari'])) : ?>
-		<?php if ($halamanAktif > 1) : ?>
-			<a href="?p=<?php echo $halamanAktif - 1; ?>">&laquo;</a>
-		<?php endif; ?>
-
-		<?php for ($i = 1; $i <= $jumlahHalaman; $i++) : ?>
-			<?php if ($i == $halamanAktif) : ?>
-				<a href="?p=<?php echo $i ?>" style="font-weight: bold; color: red"><?php echo $i; ?></a>
-			<?php else : ?>
-				<a href="?p=<?php echo $i ?>"><?php echo $i; ?></a>
-			<?php endif; ?>
-		<?php endfor; ?>
-
-		<?php if ($halamanAktif < $jumlahHalaman) : ?>
-			<a href="?p=<?php echo $halamanAktif + 1; ?>">&raquo;</a>
-		<?php endif; ?>
-	<?php endif; ?>
-
 
 
 	<table border="1" cellpadding="10" cellspacing="0">
