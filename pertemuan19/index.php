@@ -38,52 +38,52 @@ if (isset($_POST["cari"])) {
 
 	<form action="" method="POST">
 
-		<input type="text" name="keyword" autofocus placeholder="Masukkan Keyword" autocomplete="off">
-		<button type="submit" name="cari">CARI</button>
+		<input type="text" name="keyword" autofocus placeholder="Masukkan Keyword" autocomplete="off" id="keyword">
+		<button type="submit" name="cari" id="tombol-cari">CARI</button>
 		<br><br>
 
 	</form>
 
+	<div id="container">
+		<table border="1" cellpadding="10" cellspacing="0">
 
-	<table border="1" cellpadding="10" cellspacing="0">
-
-		<tr>
-			<th>No. </th>
-			<th>Aksi</th>
-			<th>Gambar</th>
-			<th>NRP</th>
-			<th>Nama</th>
-			<th>Email</th>
-			<th>Jurusan</th>
-		</tr>
-		<?php $i = 1; ?>
-
-		<?php if (count($mahasiswa) > 0) { ?>
-			<?php foreach ($mahasiswa as $row) : ?>
-				<tr>
-					<td><?php echo $i; ?></td>
-					<td>
-						<a href="ubah.php?id=<?php echo $row["id"]; ?>">ubah</a> |
-						<a href="hapus.php?id=<?php echo $row["id"]; ?>" onclick="return confirm('Apakah anda ingin menghapus data <?php echo $row["nama"] ?>??')">hapus</a>
-					</td>
-					<td><img src="img/<?php echo $row["gambar"]; ?>" width="50"></td>
-					<td><?php echo $row["nrp"]; ?></td>
-					<td><?php echo $row["nama"]; ?></td>
-					<td><?php echo $row["email"]; ?></td>
-					<td><?php echo $row["jurusan"]; ?></td>
-				</tr>
-				<?php $i++; ?>
-			<?php endforeach; ?>
-		<?php } else { ?>
 			<tr>
-				<td colspan="7">tidak ada data</td>
+				<th>No. </th>
+				<th>Aksi</th>
+				<th>Gambar</th>
+				<th>NRP</th>
+				<th>Nama</th>
+				<th>Email</th>
+				<th>Jurusan</th>
 			</tr>
-		<?php } ?>
+			<?php $i = 1; ?>
+
+			<?php if (count($mahasiswa) > 0) { ?>
+				<?php foreach ($mahasiswa as $row) : ?>
+					<tr>
+						<td><?php echo $i; ?></td>
+						<td>
+							<a href="ubah.php?id=<?php echo $row["id"]; ?>">ubah</a> |
+							<a href="hapus.php?id=<?php echo $row["id"]; ?>" onclick="return confirm('Apakah anda ingin menghapus data <?php echo $row["nama"] ?>??')">hapus</a>
+						</td>
+						<td><img src="img/<?php echo $row["gambar"]; ?>" width="50"></td>
+						<td><?php echo $row["nrp"]; ?></td>
+						<td><?php echo $row["nama"]; ?></td>
+						<td><?php echo $row["email"]; ?></td>
+						<td><?php echo $row["jurusan"]; ?></td>
+					</tr>
+					<?php $i++; ?>
+				<?php endforeach; ?>
+			<?php } else { ?>
+				<tr>
+					<td colspan="7">tidak ada data</td>
+				</tr>
+			<?php } ?>
 
 
-	</table>
-
-
+		</table>
+	</div>
+	<script src="js/script.js"></script>
 </body>
 
 </html>
